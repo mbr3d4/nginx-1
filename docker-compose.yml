@@ -1,8 +1,11 @@
+version: '3.8'
+
 services:
   nginx:
     image: nginx:latest
     ports:
-      - "8081:80"
+      - "8080:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    restart: always
+      - ./html:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
